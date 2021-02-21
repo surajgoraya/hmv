@@ -1,4 +1,4 @@
-# hmv - How Many Vaccines?
+# hmv 🇨🇦💉 — How Many Vaccines?
 hmv or HowManyVaccines is a small webpage which uses data gathered by [covid19tracker.ca](http://covid19tracker.ca) to show quick stats about vaccination in Canada 🇨🇦 🍁!
 
 This small web app is very limited, and sites like [covid19tracker.ca](http://covid19tracker.ca) are vastly more full featured and have amazing in-depth stats. This web app really serves as a chance for me to learn VueJS (which is part of what this webapp is built upon). I personally recommend you use sites like [covid19tracker.ca](http://covid19tracker.ca) or [CBC's Vaccination Tracker](https://newsinteractives.cbc.ca/coronavirustracker/).
