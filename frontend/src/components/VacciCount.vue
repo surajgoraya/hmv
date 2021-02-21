@@ -100,6 +100,7 @@ export default {
 .vacc-count__top {
   cursor: pointer;
 }
+
 .vacc-count__main {
   font-size: 3rem;
 }
@@ -114,16 +115,17 @@ export default {
 }
 .fade-enter-active,
 .fade-enter-leave {
-  transition: cubic-bezier(0.075, 0.82, 0.165, 1) 1000ms;
+  transition: opacity cubic-bezier(0.075, 0.82, 0.165, 1) 1000ms,
+    transform cubic-bezier(0.075, 0.82, 0.165, 1) 1000ms;
 }
 .fade-enter,
 .fade-leave {
   opacity: 0;
   transform: translateY(-2rem);
-  opacity: 0;
 }
 .drop-in-enter-active {
-  transition: cubic-bezier(0.075, 0.82, 0.165, 1) 1000ms;
+  transition: opacity cubic-bezier(0.075, 0.82, 0.165, 1) 1000ms,
+    transform cubic-bezier(0.075, 0.82, 0.165, 1) 1200ms;
 }
 .drop-in-enter {
   opacity: 0;

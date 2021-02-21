@@ -1,5 +1,5 @@
 <template>
-  <div class="small">
+  <div class="vaccine-chart">
     <line-chart :chart-data="datacollection"></line-chart>
   </div>
 </template>
@@ -60,4 +60,7 @@ export default {
 </script>
 
 <style>
+.vaccine-chart {
+  margin: 0;
+}
 </style>

@@ -6,8 +6,10 @@
   "license": "MIT",
   "private": true,
   "scripts": {
+    "heroku-prebuild": "cd frontend && yarn install && yarn build && cd .. && yarn install",
     "start": "node index.js",
-    "watch": "nodemon index.js"
+    "watch": "nodemon index.js",
+    "heroku-postbuild": "echo Built front and started backend server"
   },
   "dependencies": {
     "axios": "^0.21.1",

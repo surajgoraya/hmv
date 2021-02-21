@@ -35,6 +35,7 @@ export default {
 .footer__attr {
   opacity: 0.7;
   padding: 1rem;
+  font-size: 0.8rem;
   margin: 0;
 }
 .footer__attr > a {
