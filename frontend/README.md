@@ -1,4 +1,4 @@
-# vaccine-canada
+# hmv 🇨🇦💉 - frontend
 
 ## Project setup
 ```
