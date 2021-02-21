@@ -1,19 +1,19 @@
 <template>
   <div id="app">
     <VacciCount/>
-    <Footer/>
+    <CustomFooter/>
   </div>
 </template>
 
 <script>
 import VacciCount from './components/VacciCount';
-import Footer from './components/Footer';
+import CustomFooter from './components/CustomFooter';
 
 export default {
   name: 'App',
   components: {
     VacciCount,
-    Footer
+    CustomFooter
   }
 }
 </script>

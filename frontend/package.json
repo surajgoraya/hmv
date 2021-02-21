@@ -1,9 +1,6 @@
 {
   "name": "vaccine-canada",
   "version": "0.1.0",
-  "engines": {
-    "node": "14.x"
-  },
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -12,8 +9,10 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
+    "chart.js": "^2.9.4",
     "core-js": "^3.6.5",
-    "vue": "^2.6.11"
+    "vue": "^2.6.11",
+    "vue-chartjs": "^3.5.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",

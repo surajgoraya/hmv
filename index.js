@@ -11,7 +11,7 @@ app.get('/api/vaccines', (req, res) => {
         res.setHeader('Content-Type', 'application/json');
 
         if (apiRes.status === 200) {
-            const mappedData = mapData(apiRes.data);
+            const mappedData = mapSummaryData(apiRes.data);
             if (!mappedData.error) {
                 res.status(200).send(mappedData);
             } else {
@@ -22,6 +22,41 @@ app.get('/api/vaccines', (req, res) => {
         }
     });
 })
+
+app.get('/api/graph/distributed', (req, res) => {
+    axios.default.get('https://api.covid19tracker.ca/reports?stat=vaccines_distributed&after=2020-12-19&fill_dates=true').then(apiRes => {
+        res.setHeader('Content-Type', 'application/json');
+
+        if (apiRes.status === 200) {
+            const mappedData = mapVaccinesDistributedData(apiRes.data);
+            if (!mappedData.error) {
+                res.status(200).send(mappedData);
+            } else {
+                res.status(500).send(mappedData)
+            }
+        } else {
+            res.status(500).send(createError());
+        }
+    });
+});
+
+app.get('/api/graph/vaccinated', (req, res) => {
+    axios.default.get('https://api.covid19tracker.ca/reports?stat=vaccinated&after=2020-12-19&fill_dates=true').then(apiRes => {
+        res.setHeader('Content-Type', 'application/json');
+
+        if (apiRes.status === 200) {
+            const mappedData = mapVaccinesAdministeredData(apiRes.data);
+            if (!mappedData.error) {
+                res.status(200).send(mappedData);
+            } else {
+                res.status(500).send(mappedData)
+            }
+        } else {
+            res.status(500).send(createError());
+        }
+    });
+});
+
 
 
 app.use(express.static(path.join(__dirname, './frontend/dist')));
@@ -45,7 +80,65 @@ const createError = () => {
     return error;
 }
 
-const mapData = (data) => {
+const mapVaccinesDistributedData = (data) => {
+    if (data) {
+        let vData = data.data;
+
+        if (vData === null || vData === undefined) {
+            return createError();
+        }
+        vData = vData.map(data => {
+            return {
+                date: new Date(data.date),
+                change: data.change_vaccines_distributed ? Number.parseInt(data.change_vaccines_distributed) : 0,
+                total: data.total_vaccines_distributed ? Number.parseInt(data.total_vaccines_distributed) : 0
+            }
+        });
+
+        const lastUpdate = new Date(data.last_updated);
+        const newVData = {
+            dataset: vData,
+            version: lastUpdate,
+            data_source: 'http://api.covid19tracker.ca/'
+        }
+        return newVData;
+    } else {
+        //No data, API might be down?
+        return createError();
+    }
+}
+
+
+const mapVaccinesAdministeredData = (data) => {
+    if (data) {
+        let vData = data.data;
+
+        if (vData === null || vData === undefined) {
+            return createError();
+        }
+        vData = vData.map(data => {
+            return {
+                date: new Date(data.date),
+                change: data.change_vaccinated ? Number.parseInt(data.change_vaccinated) : 0,
+                total: data.total_vaccinated ? Number.parseInt(data.total_vaccinated) : 0
+            }
+        });
+
+        const lastUpdate = new Date(data.last_updated);
+        const newVData = {
+            dataset: vData,
+            version: lastUpdate,
+            data_source: 'http://api.covid19tracker.ca/'
+        }
+        return newVData;
+    } else {
+        //No data, API might be down?
+        return createError();
+    }
+}
+
+
+const mapSummaryData = (data) => {
     if (data) {
         const vData = data.data;
 
