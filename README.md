@@ -8,7 +8,7 @@ Data is provided by [covid19tracker.ca](http://covid19tracker.ca), I cannot than
 
 ## Should I use this?
 
-Probably not, no. While it does get it's data directly from [covid19tracker.ca](http://covid19tracker.ca), I would still recommend using [covid19tracker.ca](http://covid19tracker.ca) or [CBC's Vaccination Tracker](https://newsinteractives.cbc.ca/coronavirustracker/). There is always a possibility of me making mistakes as well as the code not being anywhere near production ready. This was really an excuse for me to experiment with VueJS.
+<b>Probably not, no.</b> While it does get it's data directly from [covid19tracker.ca](http://covid19tracker.ca), I would still recommend using [covid19tracker.ca](http://covid19tracker.ca) or [CBC's Vaccination Tracker](https://newsinteractives.cbc.ca/coronavirustracker/). There is always a possibility of me making mistakes as well as the code not being anywhere near production ready. This was really an excuse for me to experiment with VueJS.
 
 ## Stack
 - VueJS (Frontend)
