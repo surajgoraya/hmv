@@ -17,9 +17,39 @@
           v-on:click="graph = !graph"
         >
           <p class="vacc-count__caption">Vaccines Distributed (thus far):</p>
-          <h1 class="vacc-count__main">{{ total }}</h1>
+          <h1 class="vacc-count__main">
+            {{ total
+            }}<small class="vacc-count__additonal" v-if="additonalDist > 0"
+              >({{
+                additonalDist > 0
+                  ? "+" +
+                    new Intl.NumberFormat("en-CA").format(
+                      Number.parseInt(additonalDist)
+                    )
+                  : "-" +
+                    new Intl.NumberFormat("en-CA").format(
+                      Number.parseInt(additonalDist)
+                    )
+              }})</small
+            >
+          </h1>
           <p class="vacc-count__caption">Vaccinations Completed (thus far):</p>
-          <h1 class="vacc-count__main">{{ completed }}</h1>
+          <h1 class="vacc-count__main">
+            {{ completed
+            }}<small class="vacc-count__additonal" v-if="additonalComp > 0"
+              >({{
+                additonalComp > 0
+                  ? "+" +
+                    new Intl.NumberFormat("en-CA").format(
+                      Number.parseInt(additonalComp)
+                    )
+                  : "-" +
+                    new Intl.NumberFormat("en-CA").format(
+                      Number.parseInt(additonalComp)
+                    )
+              }})</small
+            >
+          </h1>
         </div>
       </transition>
       <div class="vacc-count__sub">
@@ -43,6 +73,8 @@ export default {
   data() {
     return {
       total: null,
+      additonalDist: null,
+      additonalComp: null,
       completed: null,
       lastUpdated: null,
       graph: false,
@@ -69,6 +101,8 @@ export default {
       this.completed = new Intl.NumberFormat("en-CA").format(
         Number.parseInt(data.total_vaccinated)
       );
+      this.additonalDist = data.change_vaccines_distributed;
+      this.additonalComp = data.change_vaccinated;
     } else {
       //return error?
     }
@@ -90,6 +124,10 @@ export default {
 .vacc-count__centerDisplay {
   flex-direction: column;
   display: flex;
+}
+.vacc-count__additonal {
+  margin-left: 0.5rem;
+  font-size: 1.5rem;
 }
 .vacc-count__caption {
   margin: 1rem 0 0.5rem 0;
