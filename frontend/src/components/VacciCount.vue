@@ -80,11 +80,7 @@ export default {
       graph: false,
     };
   },
-  methods: {
-    switchToGraph: function () {
-      console.log("tapped");
-    },
-  },
+  methods: {},
   async mounted() {
     const apiResp = await axios.get(ENDPOINTS.C19_TOTAL, {
       headers: { "Content-Type": "application/json" },
