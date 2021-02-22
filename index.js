@@ -149,6 +149,8 @@ const mapSummaryData = (data) => {
         const lastUpdate = new Date(data.last_updated);
 
         let newVData = {
+            change_vaccinated: vData[0].change_vaccinated,
+            change_vaccines_distributed: vData[0].change_vaccines_distributed,
             total_vaccinations: vData[0].total_vaccinations,
             total_vaccinated: vData[0].total_vaccinated,
             total_vaccines_distributed: vData[0].total_vaccines_distributed,

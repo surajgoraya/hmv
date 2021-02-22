@@ -22,6 +22,16 @@ export default {
     this.fillData();
   },
   methods: {
+    compareData(vaccinated, distributed) {
+      let data1 = vaccinated.data.dataset.map((d) => d.total);
+      let data2 = distributed.data.dataset.map((d) => d.total);
+      let total = [];
+      data1.forEach((vaccinated, i) => {
+        total.push(vaccinated / data2[i]);
+      });
+      return total;
+    },
+
     async fillData() {
       const distributed = await axios.get(ENDPOINTS.D_GRAPH);
       const vaccinated = await axios.get(ENDPOINTS.V_GRAPH);
