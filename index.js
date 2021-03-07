@@ -5,56 +5,84 @@ const path = require("path");
 const app = express();
 const port = process.env.PORT || 3000;
 const axios = require('axios');
+const Medusa = require('medusajs');
 
-app.get('/api/vaccines', (req, res) => {
-    axios.default.get('https://api.covid19tracker.ca/summary').then(apiRes => {
-        res.setHeader('Content-Type', 'application/json');
 
-        if (apiRes.status === 200) {
-            const mappedData = mapSummaryData(apiRes.data);
-            if (!mappedData.error) {
-                res.status(200).send(mappedData);
+app.get('/api/vaccines', async (req, res) => {
+    const resp = await Medusa.get('summary', async function (resolve, reject) {
+
+        console.log('INFO -- Cache Missed Summary, Requested server', new Date(Date.now()));
+
+        const servResp = axios.default.get('https://api.covid19tracker.ca/summary').then(apiRes => {
+            if (apiRes.status === 200) {
+                const mappedData = mapSummaryData(apiRes.data);
+                return mappedData;
             } else {
-                res.status(500).send(mappedData)
+                return createError();
             }
-        } else {
-            res.status(500).send(createError());
-        }
-    });
+        });
+
+
+        resolve(await servResp);
+    }, 3600000);
+
+    res.setHeader('Content-Type', 'application/json');
+    if (!resp.error) {
+        res.status(200).send(resp);
+    } else {
+        res.status(500).send(resp)
+    }
+
 })
 
-app.get('/api/graph/distributed', (req, res) => {
-    axios.default.get('https://api.covid19tracker.ca/reports?stat=vaccines_distributed&after=2020-12-19&fill_dates=true').then(apiRes => {
-        res.setHeader('Content-Type', 'application/json');
+app.get('/api/graph/distributed', async (req, res) => {
+    const resp = await Medusa.get('distributed', async function (resolve, reject) {
 
-        if (apiRes.status === 200) {
-            const mappedData = mapVaccinesDistributedData(apiRes.data);
-            if (!mappedData.error) {
-                res.status(200).send(mappedData);
+        console.log('INFO -- Cache Missed distributed, Requested server', new Date(Date.now()));
+
+        const servResp = axios.default.get('https://api.covid19tracker.ca/reports?stat=vaccines_distributed&after=2020-12-19&fill_dates=true').then(apiRes => {
+            if (apiRes.status === 200) {
+                const mappedData = mapVaccinesDistributedData(apiRes.data);
+                return mappedData;
             } else {
-                res.status(500).send(mappedData)
+                return createError();
             }
-        } else {
-            res.status(500).send(createError());
-        }
+        });
+
+        resolve(await servResp);
     });
+
+    res.setHeader('Content-Type', 'application/json');
+    if (!resp.error) {
+        res.status(200).send(resp);
+    } else {
+        res.status(500).send(resp)
+    }
 });
 
-app.get('/api/graph/vaccinated', (req, res) => {
-    axios.default.get('https://api.covid19tracker.ca/reports?stat=vaccinated&after=2020-12-19&fill_dates=true').then(apiRes => {
-        res.setHeader('Content-Type', 'application/json');
+app.get('/api/graph/vaccinated', async (req, res) => {
+    const resp = await Medusa.get('vaccinated', async function (resolve, reject) {
 
-        if (apiRes.status === 200) {
-            const mappedData = mapVaccinesAdministeredData(apiRes.data);
-            if (!mappedData.error) {
-                res.status(200).send(mappedData);
+        console.log('INFO -- Cache Missed vaccinated, Requested server', new Date(Date.now()));
+
+        const servResp = axios.default.get('https://api.covid19tracker.ca/reports?stat=vaccinated&after=2020-12-19&fill_dates=true').then(apiRes => {
+            if (apiRes.status === 200) {
+                const mappedData = mapVaccinesAdministeredData(apiRes.data);
+                return mappedData;
             } else {
-                res.status(500).send(mappedData)
+                return createError();
             }
-        } else {
-            res.status(500).send(createError());
-        }
+        });
+
+        resolve(await servResp);
     });
+
+    res.setHeader('Content-Type', 'application/json');
+    if (!resp.error) {
+        res.status(200).send(resp);
+    } else {
+        res.status(500).send(resp)
+    }
 });
 
 

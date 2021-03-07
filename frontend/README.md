@@ -1,4 +1,4 @@
-# hmv 🇨🇦💉 - frontend
+# frontend
 
 ## Project setup
 ```
