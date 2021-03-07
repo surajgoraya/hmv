@@ -49,22 +49,36 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow: hidden;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
 }
 
 html {
-  margin: 0;
   width: 100%;
   height: 100%;
-  background-color: $light;
-  color: #222;
+  margin: 0;
 }
 
 body {
-  padding: 0;
+  background-color: $light;
+  color: #222;
   margin: 0;
-  width: 100%;
   height: 100%;
+  overflow: hidden;
+}
+a {
+  font-weight: 300;
+  text-decoration: none;
+  color: $accent;
+  opacity: 1;
+  &:hover {
+    transition: opacity cubic-bezier(0.075, 0.82, 0.165, 1) 500ms;
+    opacity: 0.7;
+  }
+  &__active {
+    font-weight: 500;
+  }
 }
 
 a {
@@ -82,11 +96,16 @@ a {
 }
 
 #nav {
+  position: sticky;
+  top: 0;
   margin: 0;
   padding: 1rem;
   background-color: $light-2;
   display: flex;
-  flex: 1;
+  flex: 0;
+  padding: 1rem;
+  background-color: $light-2;
+  display: flex;
   flex-wrap: nowrap;
   align-items: center;
   &__brand {
@@ -111,16 +130,15 @@ a {
 }
 
 @media (prefers-color-scheme: dark) {
-  html {
+  body {
     background-color: $dark;
     color: #bdbdbd;
   }
-
-  #nav {
-    a {
-      color: $light;
-    }
-    background-color: $dark-2;
+}
+#nav {
+  a {
+    color: $light;
   }
+  background-color: $dark-2;
 }
 </style>

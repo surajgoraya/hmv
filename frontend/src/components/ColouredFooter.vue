@@ -34,7 +34,7 @@ export default {
 @import "../styles/_variables.scss";
 .cFooter {
   font-size: 0.9rem;
-  position: absolute;
+  position: sticky;
   bottom: 0;
   font-weight: 100;
   text-transform: lowercase;

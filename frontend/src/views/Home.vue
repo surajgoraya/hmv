@@ -43,7 +43,7 @@ export default {
 
 <style lang="scss" scoped>
 .dash {
-  height: 90%;
+  flex: 1;
   display: flex;
   flex-direction: column;
   text-align: left;
