@@ -1,37 +1,55 @@
 <template>
   <div id="app">
-    <VacciCount/>
-    <CustomFooter/>
+    <div id="nav">
+      <h3 id="nav__brand">💉🍁 HowManyVaccines?</h3>
+      <router-link to="/">Dashboard</router-link>
+      <router-link to="/about">About</router-link>
+    </div>
+    <router-view />
+    <ColouredFooter
+      :madeBy="true"
+      :copyright="'suraj goraya'"
+      :copyrightLink="'https://surajgoraya.ca'"
+      :dataAck="'Covid19Tracker.ca'"
+      :dataAckLink="'https://covid19tracker.ca/'"
+    />
   </div>
 </template>
-
 <script>
-import VacciCount from './components/VacciCount';
-import CustomFooter from './components/CustomFooter';
+import ColouredFooter from "./components/ColouredFooter.vue";
+import store from "./store/store.js";
+import { getVaccineData, getAbout } from "./api/api";
 
 export default {
-  name: 'App',
   components: {
-    VacciCount,
-    CustomFooter
-  }
-}
+    ColouredFooter,
+  },
+  methods: {
+    async getData() {
+      store.data = await getVaccineData();
+      store.ghAbout = await getAbout();
+    },
+  },
+  mounted() {
+    this.getData();
+  },
+};
 </script>
+<style lang="scss">
+@import "./styles/_variables.scss";
 
-<style>
-h1{
-  margin: 0;
+.container {
+  margin: 1rem 1rem 1rem 1rem;
 }
 #app {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0%;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-<<<<<<< Updated upstream
   color: #fff;
-  margin: 0;
-  padding: 0;
-=======
-  height: 100%;
   display: flex;
   flex-direction: column;
 }
@@ -46,16 +64,22 @@ body {
   background-color: $light;
   color: #222;
   margin: 0;
->>>>>>> Stashed changes
   height: 100%;
-  background: #2c3e50;
+  overflow: hidden;
 }
-<<<<<<< Updated upstream
-body, html{
-  height: 100%;
-  widows: 100%;
-  margin: 0;
-=======
+a {
+  font-weight: 300;
+  text-decoration: none;
+  color: $accent;
+  opacity: 1;
+  &:hover {
+    transition: opacity cubic-bezier(0.075, 0.82, 0.165, 1) 500ms;
+    opacity: 0.7;
+  }
+  &__active {
+    font-weight: 500;
+  }
+}
 
 a {
   font-weight: 300;
@@ -79,6 +103,9 @@ a {
   background-color: $light-2;
   display: flex;
   flex: 0;
+  padding: 1rem;
+  background-color: $light-2;
+  display: flex;
   flex-wrap: nowrap;
   align-items: center;
   &__brand {
@@ -107,13 +134,11 @@ a {
     background-color: $dark;
     color: #bdbdbd;
   }
-
-  #nav {
-    a {
-      color: $light;
-    }
-    background-color: $dark-2;
+}
+#nav {
+  a {
+    color: $light;
   }
->>>>>>> Stashed changes
+  background-color: $dark-2;
 }
 </style>
