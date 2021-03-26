@@ -3,7 +3,6 @@
     <div id="nav">
       <h3 id="nav__brand">💉🍁 HowManyVaccines?</h3>
       <router-link to="/">Dashboard</router-link>
-      <router-link to="/about">About</router-link>
     </div>
     <router-view />
     <ColouredFooter
