@@ -40,17 +40,14 @@ export default {
   text-transform: lowercase;
   padding: 1rem 0rem 1rem 0rem;
   width: 100%;
-  background-color: $light-2;
+  background-color: $dark-2;
+  &__right{
+    text-align: right;
+  }
   &__container {
     margin: 0rem 1rem 0rem 1rem;
     display: flex;
     justify-content: space-between;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .cFooter {
-    background-color: $dark-2;
   }
 }
 </style>

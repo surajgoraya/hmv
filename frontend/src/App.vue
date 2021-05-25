@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div id="nav">
-      <h3 id="nav__brand">💉🍁 HowManyVaccines?</h3>
+      <h3 id="nav__brand">💉🍁 HMV?</h3>
       <router-link to="/">Dashboard</router-link>
     </div>
     <router-view />
@@ -60,8 +60,8 @@ html {
 }
 
 body {
-  background-color: $light;
-  color: #222;
+  background-color: $dark;
+  color: $light;
   margin: 0;
   height: 100%;
   overflow: hidden;
@@ -99,11 +99,10 @@ a {
   top: 0;
   margin: 0;
   padding: 1rem;
-  background-color: $light-2;
   display: flex;
   flex: 0;
   padding: 1rem;
-  background-color: $light-2;
+  background-color: $dark-2;
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
