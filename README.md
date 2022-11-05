@@ -1,3 +1,6 @@
+> **Note**
+> This project has been archived, and is not longer actively maintained! Sorry :(
+
 # 🍁 hmv/HowManyVaccines? 💉
 [hmv or HowManyVaccines](http://hmv.surajgoraya.ca/) is a small webpage which uses data gathered by [covid19tracker.ca](http://covid19tracker.ca) to show quick stats about vaccination in Canada 🇨🇦 🍁!
 
